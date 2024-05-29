@@ -31,58 +31,59 @@ function getRandomPositiveInteger(a, b) {
 }
 
 //Функция для проверки максимальной длины строки
-function checkStringLength(string, length) {
-  return string.length <= length;
-}
+const checkStringLength = (string, length) => string.length <= length;
+checkStringLength('Проверка строки', MAX_LENGTH_MESSAGE);
 
 const ID = 25;
 const URL = 25;
-const DESCRIPTION = "Какой хороший день!";
+const DESCRIPTION = 'Какой хороший день!';
 const MIN_LIKES = 15;
 const MAX_LIKES = 250;
 const AVATAR = 6;
 const DESCRIPTION_PHOTO_COUNT = 25;
 const MESSAGE_ARRAY = [
-  "Всё отлично!",
-  "В целом всё неплохо. Но не всё.",
-  "Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.",
-  "Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.",
-  "Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.",
-  "Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!",
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 const NAME_USER = [
-  "Валентина",
-  "Петр",
-  "Владимир",
-  "Мария",
-  "Иван",
-  "Константин",
+  'Валентина',
+  'Петр',
+  'Владимир',
+  'Мария',
+  'Иван',
+  'Константин',
 ];
 
 //функция по получению случайного элемента из массива
-const getRandomArrayElement = (element) => element[getRandomPositiveInteger(0, element.length-1)]
+const getRandomArrayElement = (element) =>
+  element[getRandomPositiveInteger(0, element.length - 1)];
 
-const generateCommentsOfPhoto = () => {
-  return {
-    id: getRandomPositiveInteger(1, ID),
-    avatar: `img-avatar-${getRandomPositiveInteger(1, AVATAR)}.svg`,
-    message: getRandomArrayElement(MESSAGE_ARRAY),
-    name: getRandomArrayElement(NAME_USER),
-  };
-};
+const generateCommentsOfPhoto = () => ({
+  id: getRandomPositiveInteger(1, ID),
+  avatar: `img-avatar-${getRandomPositiveInteger(1, AVATAR)}.svg`,
+  message: getRandomArrayElement(MESSAGE_ARRAY),
+  name: getRandomArrayElement(NAME_USER),
+});
 
-const generateDescriptionOfPhoto = () => {
-  return {
-    id: getRandomPositiveInteger(1, ID),
-    url: `photos/${getRandomPositiveInteger(1, ID)}.jpg`,
-    description: `${DESCRIPTION}`,
-    likes: getRandomPositiveInteger(MIN_LIKES, MAX_LIKES),
-    comments: generateCommentsOfPhoto(),
-  };
-};
+const generateDescriptionOfPhoto = () => ({
+  id: getRandomPositiveInteger(1, ID),
+  url: `photos/${getRandomPositiveInteger(1, URL)}.jpg`,
+  description: `${DESCRIPTION}`,
+  likes: getRandomPositiveInteger(MIN_LIKES, MAX_LIKES),
+  comments: generateCommentsOfPhoto(),
+});
 
-const createDescriptionPhoto = Array.from({length: DESCRIPTION_PHOTO_COUNT}, generateDescriptionOfPhoto)
+const createDescriptionPhoto = Array.from(
+  { length: DESCRIPTION_PHOTO_COUNT },
+  generateDescriptionOfPhoto
+);
 
 generateCommentsOfPhoto();
-generateDescriptionOfPhoto()
+generateDescriptionOfPhoto();
+
+// eslint-disable-next-line no-console
 console.log(createDescriptionPhoto);
