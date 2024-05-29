@@ -4,7 +4,7 @@ const MAX_LENGTH_MESSAGE = 140;
 // Функция взята из интернета и доработана
 // Источник - https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_random
 
-function getRandomPositiveInteger (a, b) {
+function getRandomPositiveInteger(a, b) {
   // Чтобы не заставлять пользователя нашей функции помнить порядок аргументов,
   // реализуем поддержку передачи минимального и максимального значения в любом порядке,
   // а какое из них большее и меньшее вычислим с помощью Math.min и Math.max.
@@ -31,6 +31,58 @@ function getRandomPositiveInteger (a, b) {
 }
 
 //Функция для проверки максимальной длины строки
-function checkStringLength (string, length) {
+function checkStringLength(string, length) {
   return string.length <= length;
 }
+
+const ID = 25;
+const URL = 25;
+const DESCRIPTION = "Какой хороший день!";
+const MIN_LIKES = 15;
+const MAX_LIKES = 250;
+const AVATAR = 6;
+const DESCRIPTION_PHOTO_COUNT = 25;
+const MESSAGE_ARRAY = [
+  "Всё отлично!",
+  "В целом всё неплохо. Но не всё.",
+  "Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.",
+  "Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.",
+  "Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.",
+  "Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!",
+];
+const NAME_USER = [
+  "Валентина",
+  "Петр",
+  "Владимир",
+  "Мария",
+  "Иван",
+  "Константин",
+];
+
+//функция по получению случайного элемента из массива
+const getRandomArrayElement = (element) => element[getRandomPositiveInteger(0, element.length-1)]
+
+const generateCommentsOfPhoto = () => {
+  return {
+    id: getRandomPositiveInteger(1, ID),
+    avatar: `img-avatar-${getRandomPositiveInteger(1, AVATAR)}.svg`,
+    message: getRandomArrayElement(MESSAGE_ARRAY),
+    name: getRandomArrayElement(NAME_USER),
+  };
+};
+
+const generateDescriptionOfPhoto = () => {
+  return {
+    id: getRandomPositiveInteger(1, ID),
+    url: `photos/${getRandomPositiveInteger(1, ID)}.jpg`,
+    description: `${DESCRIPTION}`,
+    likes: getRandomPositiveInteger(MIN_LIKES, MAX_LIKES),
+    comments: generateCommentsOfPhoto(),
+  };
+};
+
+const createDescriptionPhoto = Array.from({length: DESCRIPTION_PHOTO_COUNT}, generateDescriptionOfPhoto)
+
+generateCommentsOfPhoto();
+generateDescriptionOfPhoto()
+console.log(createDescriptionPhoto);
