@@ -26,13 +26,16 @@ const generateDescriptionOfPhoto = () => ({
   comments: generateCommentsOfPhoto(),
 });
 
-const createDescriptionPhoto = Array.from(
-  { length: DESCRIPTION_PHOTO_COUNT },
-  generateDescriptionOfPhoto
-);
+const createDescriptionPhoto = (count) =>
+  Array.from(
+    { length: count+1 },
+    generateDescriptionOfPhoto
+  );
 
 generateCommentsOfPhoto();
 generateDescriptionOfPhoto();
 
 // eslint-disable-next-line no-console
-console.log(createDescriptionPhoto);
+console.log(createDescriptionPhoto(DESCRIPTION_PHOTO_COUNT))
+
+export { createDescriptionPhoto, DESCRIPTION_PHOTO_COUNT };
