@@ -8,7 +8,9 @@ const templatePicture = document.querySelector('#picture').content.querySelector
 const miniaturesPictures = createDescriptionPhoto(DESCRIPTION_PHOTO_COUNT);
 const miniaturesListFragment = document.createDocumentFragment();
 
-miniaturesPictures.forEach(({url, likes, comments:{message}}) => {
+miniaturesPictures.forEach((pictures) => {
+  const {url, likes, comments:{message}} = pictures;
+
   const picture = templatePicture.cloneNode(true);
   picture.querySelector('.picture__img').src = url;
   picture.querySelector('.picture__likes').textContent = likes;
@@ -17,4 +19,6 @@ miniaturesPictures.forEach(({url, likes, comments:{message}}) => {
 });
 
 picturesContainer.append(miniaturesListFragment);
+
+console.log(miniaturesPictures);
 

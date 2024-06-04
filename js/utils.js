@@ -38,4 +38,19 @@ checkStringLength('Проверка строки', MAX_LENGTH_MESSAGE);
 const getRandomArrayElement = (element) =>
   element[getRandomPositiveInteger(0, element.length - 1)];
 
-export {getRandomPositiveInteger, checkStringLength, getRandomArrayElement}
+//функция по закрытию элемента по нажатию Esc
+const closeOnEsc = () => {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      bigPicture.classList.add('hidden');
+    }
+  });
+};
+
+//функция по закрытию элемента на любую кнопку
+const closeButton = (button, element) => {
+  button.addEventListener('click', () => {
+    element.classList.add('hidden');
+  });
+};
+export { getRandomPositiveInteger, checkStringLength, getRandomArrayElement, closeOnEsc, closeButton };
