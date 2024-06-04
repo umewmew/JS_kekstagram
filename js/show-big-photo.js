@@ -9,7 +9,7 @@ const bigPictureCommentsCount = document.querySelector('.comments-count');
 const bigPictureDescription = document.querySelector('.social__caption');
 const bigPictureLoader = document.querySelector('.comments-loader');
 
-const socialCommentsList = document.querySelector('.social__comments');
+// const socialCommentsList = document.querySelector('.social__comments');
 
 //функция по созданию комментариев
 const getComment = (data) => {
@@ -42,10 +42,12 @@ const openBigPhoto = (picture) => {
   bigPictureUrl.src = url;
   bigPictureLikes.textContent = likes;
   bigPictureCommentsCount.textContent = comments;
-  bigPictureDescription = description;
+  // bigPictureDescription = description;
 
-  closeButton(buttonClose, bigPicture);
-  closeOnEsc();
+  // getComment();
+
+  buttonClose.addEventListener('click', closeButton(buttonClose, bigPicture));
+  document.addEventListener('keydown', closeOnEsc(bigPicture));
 };
-
+openBigPhoto(picture);
 export { openBigPhoto };
