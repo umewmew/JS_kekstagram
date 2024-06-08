@@ -51,12 +51,9 @@ const openBigPhoto = (picture) => {
     document.body.classList.remove('modal-open');
     bigPictureLoader.classList.add('hidden');
 
-    buttonClose.removeEventListener(
-      'click',
-      closeButton(buttonClose, bigPicture)
-    );
-    document.removeEventListener('keydown', closeOnEsc(bigPicture));
+    buttonClose.removeEventListener('click', closeBigPhoto);
+    document.removeEventListener('keydown', closeBigPhoto);
   }
 };
 
-export { openBigPhoto };
+export { openBigPhoto, getComment };

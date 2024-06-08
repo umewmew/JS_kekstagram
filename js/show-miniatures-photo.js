@@ -32,4 +32,5 @@ miniaturesPictures.forEach((pictures) => {
 
 picturesContainer.append(miniaturesListFragment);
 
+// eslint-disable-next-line no-console
 console.log(miniaturesPictures);
