@@ -38,4 +38,8 @@ checkStringLength('Проверка строки', MAX_LENGTH_MESSAGE);
 const getRandomArrayElement = (element) =>
   element[getRandomPositiveInteger(0, element.length - 1)];
 
-export {getRandomPositiveInteger, checkStringLength, getRandomArrayElement}
+export {
+  getRandomPositiveInteger,
+  checkStringLength,
+  getRandomArrayElement,
+};
