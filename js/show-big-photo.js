@@ -1,5 +1,3 @@
-import { closeButton, closeOnEsc } from './utils.js';
-
 const bigPicture = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.social__comment-count');
 const buttonClose = document.querySelector('.big-picture__cancel');

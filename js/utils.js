@@ -42,6 +42,4 @@ export {
   getRandomPositiveInteger,
   checkStringLength,
   getRandomArrayElement,
-  closeOnEsc,
-  closeButton,
 };
