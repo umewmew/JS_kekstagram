@@ -14,7 +14,7 @@ import {
 const generateCommentsOfPhoto = () => ({
   id: getRandomPositiveInteger(1, ID),
   avatar: `img-avatar-${getRandomPositiveInteger(1, AVATAR)}.svg`,
-  message: getRandomArrayElement(MESSAGE_ARRAY),
+  message: `${getRandomArrayElement(MESSAGE_ARRAY)} ${getRandomArrayElement(MESSAGE_ARRAY)}`,
   name: getRandomArrayElement(NAME_USER),
 });
 
@@ -26,16 +26,13 @@ const generateDescriptionOfPhoto = () => ({
   comments: generateCommentsOfPhoto(),
 });
 
-const createDescriptionPhoto = (count) =>
-  Array.from(
-    { length: count+1 },
-    generateDescriptionOfPhoto
-  );
+const createDescriptionPhoto = () =>
+  Array.from({ length: DESCRIPTION_PHOTO_COUNT }, generateDescriptionOfPhoto);
 
 generateCommentsOfPhoto();
-generateDescriptionOfPhoto();
+createDescriptionPhoto();
 
 // eslint-disable-next-line no-console
-console.log(createDescriptionPhoto(DESCRIPTION_PHOTO_COUNT))
+// console.log(createDescriptionPhoto(DESCRIPTION_PHOTO_COUNT))
 
-export { createDescriptionPhoto, DESCRIPTION_PHOTO_COUNT };
+export { createDescriptionPhoto };
