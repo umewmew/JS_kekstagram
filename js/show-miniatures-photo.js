@@ -1,6 +1,6 @@
 // По ТЗ в проекте необходимо отрисовать миниатюры с использованием шаблона из разметки
 import { createDescriptionPhoto } from './generate-data.js';
-import { openBigPhoto } from './show-big-photo.js';
+import { showBigPhoto } from './show-big-photo.js';
 
 const picturesContainer = document.querySelector('.pictures');
 const templatePicture = document
@@ -24,7 +24,7 @@ miniaturesPictures.forEach((pictures) => {
   picture.querySelector('.picture__comments').textContent = message.length;
 
   picture.addEventListener('click', () => {
-    openBigPhoto(pictures);
+    showBigPhoto(pictures);
   });
 
   miniaturesListFragment.append(picture);
