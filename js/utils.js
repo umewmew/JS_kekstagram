@@ -38,8 +38,11 @@ checkStringLength('Проверка строки', MAX_LENGTH_MESSAGE);
 const getRandomArrayElement = (element) =>
   element[getRandomPositiveInteger(0, element.length - 1)];
 
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
 export {
   getRandomPositiveInteger,
   checkStringLength,
   getRandomArrayElement,
+  isEscapeKey,
 };

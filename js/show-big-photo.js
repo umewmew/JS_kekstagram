@@ -1,3 +1,5 @@
+import { isEscapeKey } from './utils.js';
+
 const bigPicture = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.social__comment-count');
 const buttonClose = document.querySelector('.big-picture__cancel');
@@ -8,6 +10,12 @@ const bigPictureDescription = document.querySelector('.social__caption');
 const bigPictureLoader = document.querySelector('.comments-loader');
 
 // const socialCommentsList = document.querySelector('.social__comments');
+const onEscapeKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeBigPhoto();
+  }
+};
 
 //функция по созданию комментариев
 const getComment = (data) => {
@@ -30,30 +38,33 @@ const getComment = (data) => {
   return comment;
 };
 
-const openBigPhoto = (picture) => {
+function openBigPhoto() {
   bigPicture.classList.remove('hidden');
   commentCount.classList.add('hidden');
   document.body.classList.add('modal-open');
   bigPictureLoader.classList.add('hidden');
 
+  buttonClose.addEventListener('click', closeBigPhoto);
+  document.addEventListener('keydown', onEscapeKeydown);
+}
+
+function closeBigPhoto() {
+  bigPicture.classList.add('hidden');
+  commentCount.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  bigPictureLoader.classList.add('hidden');
+
+  document.removeEventListener('keydown', onEscapeKeydown);
+}
+
+const showBigPhoto = (picture) => {
   const { url, likes, comments, description } = picture;
   bigPictureUrl.src = url;
   bigPictureLikes.textContent = likes;
   bigPictureCommentsCount.textContent = comments;
   bigPictureDescription.innerHTML = description;
 
-  buttonClose.addEventListener('click', closeBigPhoto);
-  document.addEventListener('keydown', closeBigPhoto);
-  //функция для закрытия полноформатного изображения и обработчиков
-  function closeBigPhoto() {
-    bigPicture.classList.add('hidden');
-    commentCount.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-    bigPictureLoader.classList.add('hidden');
-
-    buttonClose.removeEventListener('click', closeBigPhoto);
-    document.removeEventListener('keydown', closeBigPhoto);
-  }
+  openBigPhoto();
 };
 
-export { openBigPhoto, getComment };
+export { showBigPhoto, getComment };
