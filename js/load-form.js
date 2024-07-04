@@ -1,6 +1,7 @@
 import { isEscapeKey } from './utils.js';
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFormHashtag = uploadForm.querySelector('.text__hashtags');
+const uploadFormComments = uploadForm.querySelector('.text__description');
 const inputUploadFile = uploadForm.querySelector('.img-upload__input');
 const editForm = uploadForm.querySelector('.img-upload__overlay');
 const closeEditFormButton = uploadForm.querySelector('.img-upload__cancel');
@@ -20,6 +21,9 @@ function openEditForm() {
   document.addEventListener('keydown', onEscapeKeydown);
 
   uploadFormHashtag.addEventListener('keydown', (evt) => {
+    evt.stopPropagation();
+  });
+  uploadFormComments.addEventListener('keydown', (evt) => {
     evt.stopPropagation();
   });
 }

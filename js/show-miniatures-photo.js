@@ -26,7 +26,6 @@ miniaturesPictures.forEach((pictures) => {
   picture.addEventListener('click', () => {
     showBigPhoto(pictures);
   });
-
   miniaturesListFragment.append(picture);
 });
 
